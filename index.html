@@ -237,8 +237,7 @@ button:hover, a:hover {
       <h1>Andy Ge</h1>
       <p class="title">CEO & Founder, Developer, Artist</p>
       <p>Fantasy University</p>
-        <div style="margin: 24px 0;">
-         <a href="#"><i class="fa fa-dribbble"></i></a> 
+        <div style="margin: 24px 0;"> 
          <a href="#"><i class="fa fa-twitter"></i></a>  
          <a href="#"><i class="fa fa-linkedin"></i></a>  
          <a href="#"><i class="fa fa-facebook"></i></a> 
@@ -260,7 +259,69 @@ button:hover, a:hover {
     <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
   </div>
 </div>
+<script>
 
+    async function populate() {
+
+      const requestURL = './data/json/index.json';
+      const request = new Request(requestURL);
+
+      const response = await fetch(request);
+      const index = await response.json();
+
+      populateHeader(index);
+      populateHeroes(index);
+
+    }
+
+    function populateHeader(obj) {
+      const header = document.querySelector('header');
+      const myH1 = document.createElement('h1');
+      myH1.textContent = obj['titel'];
+      header.appendChild(myH1);
+
+      const myPara = document.createElement('p');
+      myPara.textContent = `Hometown: ${obj['homeTown']} // Formed: ${obj['formed']}`;
+      header.appendChild(myPara);
+    }
+
+    function populateHeroes(obj) {
+      const section = document.querySelector('section');
+      const heroes = obj['members'];
+
+      for (const hero of heroes) {
+        const myArticle = document.createElement('article');
+        const myH2 = document.createElement('h2');
+        const myPara1 = document.createElement('p');
+        const myPara2 = document.createElement('p');
+        const myPara3 = document.createElement('p');
+        const myList = document.createElement('ul');
+
+        myH2.textContent = hero.name;
+        myPara1.textContent = `Secret identity: ${hero.secretIdentity}`;
+        myPara2.textContent = `Age: ${hero.age}`;
+        myPara3.textContent = 'Superpowers:';
+
+        const superPowers = hero.powers;
+        for (const power of superPowers) {
+          const listItem = document.createElement('li');
+          listItem.textContent = power;
+          myList.appendChild(listItem);
+        }
+
+        myArticle.appendChild(myH2);
+        myArticle.appendChild(myPara1);
+        myArticle.appendChild(myPara2);
+        myArticle.appendChild(myPara3);
+        myArticle.appendChild(myList);
+
+        section.appendChild(myArticle);
+      }
+    }
+
+    populate();
+
+    </script>
   <!-- Footer -->
   <div class="footer">
     <footer>

@@ -213,56 +213,87 @@ button:hover, a:hover {
 <!-- Navigation Bar -->
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="./">Home</a> |
-  <a href="./templates/team.html">Team</a> |
-  <a href="./templates/products.html">Products</a> |
-  <a href="./templates/animation.html">Animation</a> |
-  <a href="./templates/wiki.html">Wiki</a> |
-  <a href="./templates/style.html">Style</a> |
-  <a href="./templates/about.html">About us</a>
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/">Home</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/team.html">Team</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/wiki.html">Wiki</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/whitepaper.html">Whitepaper</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/about.html">About us</a>
 </div>
 <div id="main">
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Navigation</span>
 </div>
-
   
+    <header>
+      
+    </header>
+    
+    <section>
+      
+    </section>
+    
+<script>
 
+    async function populate() {
 
-<!-- The flexible grid (content) -->
-<div class="row">
-  <div class="side">
-    <h2 style="text-align:center">About me</h2>
-    <div class="card">
-      <div class="cardimg">
-        <img src="./images/me.png" alt="Andy" style="width:100%">
-      </div>  
-      <h1>Andy Ge</h1>
-      <p class="title">CEO & Founder, Developer, Artist</p>
-      <p>Fantasy University</p>
-        <div style="margin: 24px 0;">
-         <a href="#"><i class="fa fa-dribbble"></i></a> 
-         <a href="#"><i class="fa fa-twitter"></i></a>  
-         <a href="#"><i class="fa fa-linkedin"></i></a>  
-         <a href="#"><i class="fa fa-facebook"></i></a> 
-       </div>
-        <p><button>Contact</button></p>
-     </div>
-    </div>
-  <div class="main">
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Dec 7, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    <br>
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Sep 2, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-  </div>
-</div>
+      const requestURL = './res/js/index.json';
+      const request = new Request(requestURL);
 
+      const response = await fetch(request);
+      const index = await response.json();
+
+      populateHeader(index);
+      populateHeroes(index);
+
+    }
+
+    function populateHeader(obj) {
+      const header = document.querySelector('header');
+      const myH1 = document.createElement('h5');
+      myH1.textContent = obj['titel'];
+      header.appendChild(myH1);
+
+      const myPara = document.createElement('p');
+      myPara.textContent = `${obj['homeTown']} // Formed: ${obj['formed']}`;
+      header.appendChild(myPara);
+    }
+
+    function populateIndex(obj) {
+      const section = document.querySelector('section');
+      const heroes = obj['members'];
+
+      for (const hero of heroes) {
+        const myArticle = document.createElement('article');
+        const myH2 = document.createElement('h2');
+        const myPara1 = document.createElement('p');
+        const myPara2 = document.createElement('p');
+        const myPara3 = document.createElement('p');
+        const myList = document.createElement('ul');
+
+        myH2.textContent = hero.name;
+        myPara1.textContent = `Secret identity: ${hero.secretIdentity}`;
+        myPara2.textContent = `Age: ${hero.age}`;
+        myPara3.textContent = 'Superpowers:';
+
+        const superPowers = hero.powers;
+        for (const power of superPowers) {
+          const listItem = document.createElement('li');
+          listItem.textContent = power;
+          myList.appendChild(listItem);
+        }
+
+        myArticle.appendChild(myH2);
+        myArticle.appendChild(myPara1);
+        myArticle.appendChild(myPara2);
+        myArticle.appendChild(myPara3);
+        myArticle.appendChild(myList);
+
+        section.appendChild(myArticle);
+      }
+    }
+
+    populate();
+
+    </script>
   <!-- Footer -->
   <div class="footer">
     <footer>
@@ -285,4 +316,3 @@ function closeNav() {
   
 </body>
 </html>
-

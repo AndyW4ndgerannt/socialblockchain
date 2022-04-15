@@ -1,5 +1,5 @@
 {
-  "Titel" : "Titel",
+  "titel" : "Titel",
   "homeTown" : "Lebach",
   "since" : 2022,
   "active" : true,

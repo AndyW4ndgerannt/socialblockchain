@@ -246,7 +246,14 @@ button:hover, a:hover {
      </div>
     </div>
   <div class="main">
-    <h2>TITLE HEADING</h2>
+    <header>
+      
+    </header>
+    
+    <section>
+      
+    </section>
+    
     <h5>Title description, Dec 7, 2017</h5>
     <div class="fakeimg" style="height:200px;">Image</div>
     <p>Some text..</p>
@@ -276,16 +283,16 @@ button:hover, a:hover {
 
     function populateHeader(obj) {
       const header = document.querySelector('header');
-      const myH1 = document.createElement('h1');
+      const myH1 = document.createElement('h5');
       myH1.textContent = obj['titel'];
       header.appendChild(myH1);
 
       const myPara = document.createElement('p');
-      myPara.textContent = `Hometown: ${obj['homeTown']} // Formed: ${obj['formed']}`;
+      myPara.textContent = `${obj['homeTown']} // Formed: ${obj['formed']}`;
       header.appendChild(myPara);
     }
 
-    function populateHeroes(obj) {
+    function populateIndex(obj) {
       const section = document.querySelector('section');
       const heroes = obj['members'];
 

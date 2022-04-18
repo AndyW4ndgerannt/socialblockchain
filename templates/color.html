@@ -9,6 +9,18 @@
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    #myContainer {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#myAnimation {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
 * {box-sizing: border-box;}
 
 body { 
@@ -200,7 +212,12 @@ button:hover, a:hover {
 </head>
   
 <body>
-  
+  <p>
+    <button onclick="myMove()">Move</button>
+  </p>
+  <div id ="myContainer">
+<div id ="myAnimation"></div>
+</div>
 <!-- Header --> 
 <div class="header">
   <a href="https://andyw4ndgerannt.github.io/socialblockchain/" class="logo">CompanyLogo</a>
@@ -262,7 +279,24 @@ button:hover, a:hover {
     <p>.</p>
   </div>
 </div>
-
+<script>
+var id = null;
+function myMove() {
+  var elem = document.getElementById("myAnimation");   
+  var pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 10);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.top = pos + 'px'; 
+      elem.style.left = pos + 'px'; 
+    }
+  }
+}
+</script>
   <!-- Footer -->
   <div class="footer">
     <footer>

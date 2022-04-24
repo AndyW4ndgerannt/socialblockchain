@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="https://andyw4ndgerannt.github.io/socialblockchain/">
+<head>
+  <title>TechDocs</title>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+* {box-sizing: border-box;}
+
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+  /* Style the top navigation bar */
+  .navbar {
+    display: flex;
+    background-color: #333;
+  }
+  /* Style the navigation bar links */
+  .navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+  }
+  /* Change color on hover */
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  /* Column container */
+  .row {  
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /* Create two unequal columns that sits next to each other */
+  /* Sidebar/left column */
+  .side {
+    flex: 30%;
+    background-color: #f1f1f1;
+    padding: 20px;
+  }
+  /* Main column */
+  .main {
+    flex: 70%;
+    background-color: white;
+    padding: 20px;
+  }
+  /* Fake image, just for this example */
+  .fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+  /* Card Image */
+  .cardimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+  /* Footer */
+  .footer {
+    text-align: center;
+    felx: 70%;
+    background-color: DarkSalmon;
+    color: white;
+    padding: 20px;
+  }
+  /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 700px) {
+    .row, .navbar {   
+      flex-direction: column;
+    }
+  }
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+    .scene {
+   position: relative;
+   transform-style: preserve-3d;
+}
+    body {
+   background-color: #000;
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 40px;
+   perspective: 10em;
+   perspective-origin: 50% calc(50% - 2em);
+   overflow: hidden;
+}
+    .frontWall {
+   position: absolute;
+   background-color: #222297;
+   background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #222297 1em ), repeating-linear-gradient( #03076055, #030760 );
+   width: 20em;
+   height: 20em;
+   top: -16em;
+   left:-10em;
+   transform: translateZ(-10em);
+  }
+    
+  .ceiling, .frontWall, .leftWall, .rightWall { /*existing CSS code*/ }
+    .leftWall {
+   left:-20em;
+   transform: rotateY(-90deg);
+}
+    .rightWall {
+   transform: rotateY(90deg);
+   left:0;
+ }
+    .floor {
+   background-color: #000;
+   background-image:  linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%), linear-gradient(45deg, #ffffff 25%, transparent 25%), linear-gradient(315deg, #ffffff 25%, #000 25%);
+   background-position:  1em 0, 1em 0, 0 0, 0 0;
+   background-size: 1em 1em;
+   background-repeat: repeat;
+   width: 20em;
+   height: 20em;
+   top: 1em;
+   z-index: 0;
+   position: absolute;
+   transform:
+     translate(-50%, -50%)
+     rotateX(90deg)
+     translateZ(-3em);
+}
+.ceiling {
+   background-color: #0a0a5c;
+   background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #222297 17px ), repeating-linear-gradient( #03076055, #030760 );
+   top:0;
+   left:0;
+   transform:
+     translate(-50%, -50%)
+     rotateX(90deg)
+     translateZ(15em);
+}
+    .frontWall {
+   clip-path: polygon(0% 0%,
+     0% 100%,
+     33% 100%,
+     33% 39%,
+     67% 39%,
+     68% 100%,
+     33% 100%,
+     33% 100%,
+     100% 100%,
+     100% 0%);
+ }
+    :root {
+   --turnSpeed: 40s;
+   --speed: 300s;
+}
+    @keyframes sceneRotateLeft {
+   to { transform: rotateY(-360deg); }
+      }
+
+  @keyframes sceneRotateRight {
+   to { transform: rotateY(360deg); }
+}
+
+   @keyframes sceneMoveForward {
+   to { transform: translateZ(1000em); }
+}
+
+@keyframes sceneMoveBack {
+   to { transform: translateZ(-1000em); }
+}
+    .scene {
+   animation:
+     sceneRotateLeft var(--turnSpeed) infinite linear,
+     sceneRotateRight var(--turnSpeed) infinite linear,
+     sceneMoveForward var(--speed) infinite linear,
+     sceneMoveBack var(--speed) infinite linear;
+   animation-play-state: paused, paused, paused, paused;
+}
+    
+    /*Safari only hack*/
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  #controls {
+    top: 40%;
+  }
+}
+
+.flex-grid {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   justify-content: center;
+ }
+
+.col {
+   width: 32%;
+   text-align: center;
+}
+
+#controls a:link, #controls a:visited {
+    text-decoration: none;
+    color:rgb(250, 255, 0);
+    text-shadow: 2px 2px #000;
+}
+  </style>
+</head>
+  
+<body>
+<a tabindex="1" accesskey="W" class="moveForward" id="moveForward" href="#moveForward" ></a>
+<a tabindex="2" accesskey="A" class="turnLeft" id="turnLeft" href="#turnLeft"></a>
+<a tabindex="5" accesskey="X" class="stop" id="stop" href="#stop"></a>
+<a tabindex="3" accesskey="D" class="turnRight" id="turnRight" href="#turnRight"></a>
+<a tabindex="4" accesskey="S" class="moveBack" id="moveBack" href="#moveBack"></a>
+
+<div id="controls">
+  <div class="flex-grid">
+    <div class="col"></div>
+    <div class="col"><a href="#moveForward">&uarr;</a></div>
+    <div class="col"></div>
+  </div>
+  <div class="flex-grid">
+    <div class="col"><a href="#turnLeft">&larr;</a></div>
+    <div class="col"><a href="#stop">&bull;</a></div>
+    <div class="col"><a  href="#turnRight">&rarr;</a></div>
+  </div>
+  <div class="flex-grid">
+    <div class="col"></div>
+    <div class="col"><a href="#moveBack">&darr;</a></div>
+    <div class="col"></div>
+  </div>
+</div>
+  
+
+<div class="scene"></div>
+  <div class="scene">
+   <div class="frontWall"></div>
+   <div class="leftWall"></div>
+   <div class="rightWall"></div>
+   <div class="floor"></div>
+</div>
+  
+<!-- Header --> 
+<div class="header">
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/" class="logo">CompanyLogo</a>
+  <div class="header-right">
+    <a class="active" href="https://andyw4ndgerannt.github.io/socialblockchain/">Home</a>
+    <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/contact.html">Contact</a>
+    <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/about.html">About</a>
+  </div>
+</div>
+  
+<!-- Navigation Bar -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/">Home</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/team.html">Team</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/wiki.html">Wiki</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/whitepaper.html">Whitepaper</a> |
+  <a href="https://andyw4ndgerannt.github.io/socialblockchain/templates/about.html">About us</a>
+</div>
+<div id="main">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Navigation</span>
+</div>
+  
+    <header>
+      
+    </header>
+    
+    <section>
+      
+    </section>
+    
+<script>
+
+    async function populate() {
+
+      const requestURL = './res/js/index.json';
+      const request = new Request(requestURL);
+
+      const response = await fetch(request);
+      const index = await response.json();
+
+      populateHeader(index);
+      populateHeroes(index);
+
+    }
+
+    function populateHeader(obj) {
+      const header = document.querySelector('header');
+      const myH1 = document.createElement('h5');
+      myH1.textContent = obj['titel'];
+      header.appendChild(myH1);
+
+      const myPara = document.createElement('p');
+      myPara.textContent = `${obj['homeTown']} // Formed: ${obj['formed']}`;
+      header.appendChild(myPara);
+    }
+
+    function populateIndex(obj) {
+      const section = document.querySelector('section');
+      const heroes = obj['members'];
+
+      for (const hero of heroes) {
+        const myArticle = document.createElement('article');
+        const myH2 = document.createElement('h2');
+        const myPara1 = document.createElement('p');
+        const myPara2 = document.createElement('p');
+        const myPara3 = document.createElement('p');
+        const myList = document.createElement('ul');
+
+        myH2.textContent = hero.name;
+        myPara1.textContent = `Secret identity: ${hero.secretIdentity}`;
+        myPara2.textContent = `Age: ${hero.age}`;
+        myPara3.textContent = 'Superpowers:';
+
+        const superPowers = hero.powers;
+        for (const power of superPowers) {
+          const listItem = document.createElement('li');
+          listItem.textContent = power;
+          myList.appendChild(listItem);
+        }
+
+        myArticle.appendChild(myH2);
+        myArticle.appendChild(myPara1);
+        myArticle.appendChild(myPara2);
+        myArticle.appendChild(myPara3);
+        myArticle.appendChild(myList);
+
+        section.appendChild(myArticle);
+      }
+    }
+
+    populate();
+
+    </script>
+  <!-- Footer -->
+  <div class="footer">
+    <footer>
+      <p>Author: Andreas Gerlich<br>
+      <a href="mailto:gerlich96@gmx.de">gerlich96@gmx.de</a></p>
+    </footer>
+  </div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+  
+</body>
+</html>

@@ -1,175 +1,198 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="https://andyw4ndgerannt.github.io/socialblockchain/">
-<head>
-  <title>TechDocs</title>
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-  <style>
+<!doctype HTML>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>3D world in CSS</title>
+        <style>
+            :root {
+                --turnSpeed: 40s;
+                --speed: 300s;
+            }
+
+            body {
+                background-color: #000;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 40px;
+                perspective: 10em;
+                perspective-origin: 50% calc(50% - 2em);                           
+                overflow: hidden;     
+            }
+
+            .scene {
+               position: relative;
+               transform-style: preserve-3d;
+                animation: 
+                    sceneRotateLeft var(--turnSpeed) infinite linear, 
+                    sceneRotateRight var(--turnSpeed) infinite linear,
+                    sceneMoveForward var(--speed) infinite linear,
+                    sceneMoveBack var(--speed) infinite linear;
+                animation-play-state: paused, paused, paused, paused;
+            }
+
+            @keyframes sceneRotateLeft {
+                to { transform: rotateY(-360deg); }
+            }
+            
+            @keyframes sceneRotateRight {
+                to { transform: rotateY(360deg); }
+            }
+            
+            @keyframes sceneMoveForward {
+                to { transform: translateZ(1000em); }
+            }
+            
+            @keyframes sceneMoveBack {
+                to { transform: translateZ(-1000em); }
+            }
 
 
-    .scene {
-   position: relative;
-   transform-style: preserve-3d;
-}
-    body {
-   background-color: #000;
-   min-height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 40px;
-   perspective: 10em;
-   perspective-origin: 50% calc(50% - 2em);
-   overflow: hidden;
-}
-    .frontWall {
-   position: absolute;
-   background-color: #222297;
-   background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #222297 1em ), repeating-linear-gradient( #03076055, #030760 );
-   width: 20em;
-   height: 20em;
-   top: -16em;
-   left:-10em;
-   transform: translateZ(-10em);
-  }
-    
-  .ceiling, .frontWall, .leftWall, .rightWall { /*existing CSS code*/ }
-    .leftWall {
-   left:-20em;
-   transform: rotateY(-90deg);
-}
-    .rightWall {
-   transform: rotateY(90deg);
-   left:0;
- }
-    .floor {
-   background-color: #000;
-   background-image:  linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%), linear-gradient(45deg, #ffffff 25%, transparent 25%), linear-gradient(315deg, #ffffff 25%, #000 25%);
-   background-position:  1em 0, 1em 0, 0 0, 0 0;
-   background-size: 1em 1em;
-   background-repeat: repeat;
-   width: 20em;
-   height: 20em;
-   top: 1em;
-   z-index: 0;
-   position: absolute;
-   transform:
-     translate(-50%, -50%)
-     rotateX(90deg)
-     translateZ(-3em);
-}
-.ceiling {
-   background-color: #0a0a5c;
-   background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #222297 17px ), repeating-linear-gradient( #03076055, #030760 );
-   top:0;
-   left:0;
-   transform:
-     translate(-50%, -50%)
-     rotateX(90deg)
-     translateZ(15em);
-}
-    .frontWall {
-   clip-path: polygon(0% 0%,
-     0% 100%,
-     33% 100%,
-     33% 39%,
-     67% 39%,
-     68% 100%,
-     33% 100%,
-     33% 100%,
-     100% 100%,
-     100% 0%);
- }
-    :root {
-   --turnSpeed: 40s;
-   --speed: 300s;
-}
-    @keyframes sceneRotateLeft {
-   to { transform: rotateY(-360deg); }
-      }
+            .ceiling, .frontWall, .leftWall, .rightWall {
+                position: absolute;
+                background-color: #222297;                
+                background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #222297 1em ), repeating-linear-gradient( #03076055, #030760 );
+                width: 20em;
+                height: 20em;
+                top: -16em;
+                left:-10em;
+                transform: translateZ(-10em);
+            }
 
-  @keyframes sceneRotateRight {
-   to { transform: rotateY(360deg); }
-}
+            .leftWall {                
+                left:-20em;
+                transform: rotateY(-90deg);
+            }
 
-   @keyframes sceneMoveForward {
-   to { transform: translateZ(1000em); }
-}
+            .rightWall {                
+                transform: rotateY(90deg);
+                left:0;
+            }
 
-@keyframes sceneMoveBack {
-   to { transform: translateZ(-1000em); }
-}
-    .scene {
-   animation:
-     sceneRotateLeft var(--turnSpeed) infinite linear,
-     sceneRotateRight var(--turnSpeed) infinite linear,
-     sceneMoveForward var(--speed) infinite linear,
-     sceneMoveBack var(--speed) infinite linear;
-   animation-play-state: paused, paused, paused, paused;
-}
-    
-    /*Safari only hack*/
-@supports (-webkit-backdrop-filter: blur(1px)) {
-  #controls {
-    top: 40%;
-  }
-}
+            .floor {
+                background-color: #000;            
+                background-image:  linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%), linear-gradient(45deg, #ffffff 25%, transparent 25%), linear-gradient(315deg, #ffffff 25%, #000 25%);
+                background-position:  1em 0, 1em 0, 0 0, 0 0;
+                background-size: 1em 1em;
+                background-repeat: repeat;
+                width: 20em;
+                height: 20em;
+                top: 1em;
+                z-index: 0;
+                position: absolute;
+                transform: 
+                translate(-50%, -50%)
+                rotateX(90deg)
+                translateZ(-3em);
+            }
 
-.flex-grid {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   justify-content: center;
- }
+            .ceiling {
+                background-color: #0a0a5c;                
+                background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #222297 17px ), repeating-linear-gradient( #03076055, #030760 );
+                top:0;
+                left:0;
+                transform: 
+                translate(-50%, -50%)
+                rotateX(90deg)
+                translateZ(15em);
+            }
 
-.col {
-   width: 32%;
-   text-align: center;
-}
+            .frontWall {
+                clip-path: polygon(0% 0%, 0% 100%, 33% 100%, 33% 39%, 67% 39%, 68% 100%, 33% 100%, 33% 100%, 100% 100%, 100% 0%);
+            }
 
-#controls a:link, #controls a:visited {
-    text-decoration: none;
-    color:rgb(250, 255, 0);
-    text-shadow: 2px 2px #000;
-}
-  </style>
-</head>
-  
-<body>
-<a tabindex="1" accesskey="W" class="moveForward" id="moveForward" href="#moveForward" ></a>
-<a tabindex="2" accesskey="A" class="turnLeft" id="turnLeft" href="#turnLeft"></a>
-<a tabindex="5" accesskey="X" class="stop" id="stop" href="#stop"></a>
-<a tabindex="3" accesskey="D" class="turnRight" id="turnRight" href="#turnRight"></a>
-<a tabindex="4" accesskey="S" class="moveBack" id="moveBack" href="#moveBack"></a>
+            :target.turnLeft ~ .scene, #turnLeft:focus ~ .scene {
+                animation-play-state: running, paused, paused, paused;
+            }
+                
+            :target.turnRight ~ .scene, #turnRight:focus ~ .scene {
+                animation-play-state: paused, running, paused, paused;
+            }
+                
+            :target.moveBack ~ .scene, #moveBack:focus ~ .scene {
+                animation-play-state: paused, paused, paused, running;
+            }
+                
+            :target.moveForward ~ .scene, #moveForward:focus ~ .scene {
+                animation-play-state: paused, paused, running, paused;
+            }
 
-<div id="controls">
-  <div class="flex-grid">
-    <div class="col"></div>
-    <div class="col"><a href="#moveForward">&uarr;</a></div>
-    <div class="col"></div>
-  </div>
-  <div class="flex-grid">
-    <div class="col"><a href="#turnLeft">&larr;</a></div>
-    <div class="col"><a href="#stop">&bull;</a></div>
-    <div class="col"><a  href="#turnRight">&rarr;</a></div>
-  </div>
-  <div class="flex-grid">
-    <div class="col"></div>
-    <div class="col"><a href="#moveBack">&darr;</a></div>
-    <div class="col"></div>
-  </div>
-</div>
-  
+            #moveForward, #turnLeft, #stop, #turnRight, #moveBack {
+                position: absolute;
+                left: -5000px;
+                top:-5000px;
+            }
 
-<div class="scene"></div>
-  <div class="scene">
-   <div class="frontWall"></div>
-   <div class="leftWall"></div>
-   <div class="rightWall"></div>
-   <div class="floor"></div>
-</div>
-  
-</body>
+            #controls {
+                position: fixed;                 
+                z-index: 100;
+                width: 5em;
+                bottom: 2em;
+                margin-left:-2.5em;
+                left:50%;
+                font-size: 5vmin;
+            }
+
+
+            /*Safari only hack*/
+            @supports (-webkit-backdrop-filter: blur(1px)) {
+                #controls {
+                    top: 40%;
+                }
+            }
+
+            .flex-grid {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .col {
+                width: 32%;
+                text-align: center;
+            }
+            
+            #controls a:link, #controls a:visited {
+                text-decoration: none;
+                color:rgb(250, 255, 0);
+                text-shadow: 2px 2px #000;
+            }
+        </style>            
+    </head>
+    <body>
+
+        <div id="controls">
+            <div class="flex-grid">
+               <div class="col"></div>
+               <div class="col"><a href="#moveForward">&uarr;</a></div>
+               <div class="col"></div>
+            </div>
+            <div class="flex-grid">
+               <div class="col"><a href="#turnLeft">&larr;</a></div>
+               <div class="col"><a href="#stop">&bull;</a></div>
+               <div class="col"><a  href="#turnRight">&rarr;</a></div>
+            </div>
+            <div class="flex-grid">
+               <div class="col"></div>
+               <div class="col"><a href="#moveBack">&darr;</a></div>
+               <div class="col"></div>
+            </div>
+         </div>
+
+        <a tabindex="1" accesskey="W" class="moveForward" id="moveForward" href="#moveForward" ></a>
+        <a tabindex="2" accesskey="A" class="turnLeft" id="turnLeft" href="#turnLeft"></a>
+        <a tabindex="5" accesskey="X" class="stop" id="stop" href="#stop"></a>
+        <a tabindex="3" accesskey="D" class="turnRight" id="turnRight" href="#turnRight"></a>
+        <a tabindex="4" accesskey="S" class="moveBack" id="moveBack" href="#moveBack"></a>        
+
+        <div class="scene">
+            <div class="ceiling"></div>
+            <div class="frontWall"></div>
+            <div class="leftWall"></div>
+            <div class="rightWall"></div>
+            <div class="floor"></div>
+        </div>
+    </body>
 </html>

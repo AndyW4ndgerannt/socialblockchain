@@ -10,30 +10,58 @@
 	<body>
 		<script src="../res/js/three.js"></script>
 		<script>
+			
+			/// starte neue szene
 			const scene = new THREE.Scene();
+			
+			/// kameraperspektive
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
+			
+			/// wie soll es gerendert werden
 			const renderer = new THREE.WebGLRenderer();
+			
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
-
+			
+			
+			/// erstelle eine einfache Box
 			const geometry = new THREE.BoxGeometry();
-			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			const material = new THREE.MeshBasicMaterial( { color: 0x0c4da2 } );
+			/// füge die box der szene hinzu sodass sie auch zu sehen ist
 			const cube = new THREE.Mesh( geometry, material );
 			scene.add( cube );
 
+			/// kamera position
 			camera.position.z = 5;
-
+			
+			/// lade hintergrund texturen
+			const loader = new THREE.CubeTextureLoader();
+			const texture = loader.load([
+   			    './res/textures/distant_sunset/distant_sunset_bk.jpg',
+   			    './res/textures/distant_sunset/distant_sunset_dn.jpg',
+   			    './res/textures/distant_sunset/distant_sunset_ft.jpg',
+    			    './res/textures/distant_sunset/distant_sunset_lf.jpg',
+			    './res/textures/distant_sunset/distant_sunset_rt.jpg',
+    			    './res/textures/distant_sunset/distant_sunset_up.jpg',
+			]);
+			scene.background = texture;
+			
+			
+			/// animationsfunktion
 			function animate() {
-				requestAnimationFrame( animate );
-
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
-
-				renderer.render( scene, camera );
+			
+			    requestAnimationFrame( animate );
+			
+			    cube.rotation.x += 0.01;
+			    cube.rotation.y += 0.01;
+			
+			    renderer.render( scene, camera );
+			
 			};
-
+			
+			/// starte
 			animate();
+			
 		</script>
 	</body>
 </html>
